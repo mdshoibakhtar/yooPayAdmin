@@ -1,0 +1,6 @@
+.main-body{
+    display: flex;
+}
+.listStyle{
+    list-style: circle;
+}
