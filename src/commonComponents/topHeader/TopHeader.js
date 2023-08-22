@@ -2,7 +2,7 @@ import React from 'react'
 import logo from "../../assets/images/logo/logo-full.png"
 function TopHeader() {
     return (
-        <>
+        <div className='position-sticky top-0 ' style={{ zIndex: "99" }}>
             {/* Nav header start */}
             <div className="nav-header">
                 <a href="index.html" className="brand-logo">
@@ -689,10 +689,10 @@ function TopHeader() {
                                                         <div className="media me-2 media-info">
                                                             KG
                                                         </div>
-                                                        <div className="media-body">
+                                                        {<div className="media-body">
                                                             <h6 className="mb-1">Resport created successfully</h6>
                                                             <small className="d-block">29 July 2020 - 02:26 PM</small>
-                                                        </div>
+                                                        </div>}
                                                     </div>
                                                 </li>
                                                 <li>
@@ -760,10 +760,10 @@ function TopHeader() {
                                                 <div className="header-media">
                                                     <img src="images/tab/1.jpg" alt />
                                                 </div>
-                                                <div className="header-info">
+                                                {/*  <div className="header-info">
                                                     <h6>Thomas Fleming</h6>
                                                     <p>info@gmail.com</p>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </a>
                                         <div className="dropdown-menu dropdown-menu-end" style={{}}>
@@ -828,7 +828,7 @@ function TopHeader() {
             </div>
 
             {/* Header end ti-comment-alt */}
-        </>
+        </div>
 
 
     )

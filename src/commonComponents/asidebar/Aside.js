@@ -1,38 +1,45 @@
-import React from 'react'
-
+import React, { useState } from 'react'
+import { Link } from "react-router-dom";
+import { HiUserGroup } from 'react-icons/hi';
+import { RiHome2Line } from 'react-icons/ri';
+import { asideMenu } from './asideMenu';
 function Aside() {
+    const [state, setState] = useState({
+        users: false,
+        dashboard: false
+    })
+    const changeState = (str) => {
+        const clone = { ...state }
+        clone[str] = !state[str]
+        setState(clone)
+    }
     return <>
-        <div className="deznav">
-            <div className="deznav-scroll ">
+        <div className="deznav vh-100 overflow-y-auto">
+            <div className="deznav-scroll " >
                 <ul className="metismenu" id="menu">
                     <li className="menu-title">YOUR COMPANY</li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " to="" aria-expanded="false" onClick={() => { changeState('dashboard') }}>
                         <div className="menu-icon">
-                            <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2.5 7.49999L10 1.66666L17.5 7.49999V16.6667C17.5 17.1087 17.3244 17.5326 17.0118 17.8452C16.6993 18.1577 16.2754 18.3333 15.8333 18.3333H4.16667C3.72464 18.3333 3.30072 18.1577 2.98816 17.8452C2.67559 17.5326 2.5 17.1087 2.5 16.6667V7.49999Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M7.5 18.3333V10H12.5V18.3333" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
+                            <RiHome2Line />
                         </div>
                         <span className="nav-text">Dashboard</span>
                     </a>
-                        {/* <ul aria-expanded="false">
-                            <li><a href="index.html">Dashboard Light</a></li>
-                            <li><a href="index-2.html">Dashboard Dark</a></li>
-                        </ul> */}
+                        <ul aria-expanded="false" className={`listStyle mm-collapse ${state.dashboard ? "mm-show" : ""} `}>
+                            <li><Link to="dashboard">Dashboard Light</Link></li>
+                            {/* <li><Link to="">Dashboard Dark</Link></li> */}
+                        </ul>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
-                        <div className="menu-icon">
-                            <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fillRule="evenodd" clipRule="evenodd" d="M10.986 14.0673C7.4407 14.0673 4.41309 14.6034 4.41309 16.7501C4.41309 18.8969 7.4215 19.4521 10.986 19.4521C14.5313 19.4521 17.5581 18.9152 17.5581 16.7693C17.5581 14.6234 14.5505 14.0673 10.986 14.0673Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
-                                <path fillRule="evenodd" clipRule="evenodd" d="M10.986 11.0054C13.3126 11.0054 15.1983 9.11881 15.1983 6.79223C15.1983 4.46564 13.3126 2.57993 10.986 2.57993C8.65944 2.57993 6.77285 4.46564 6.77285 6.79223C6.76499 9.11096 8.63849 10.9975 10.9563 11.0054H10.986Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
-                        <span className="nav-text">Users</span>
-                    </a>
-                        <ul aria-expanded="false" className='listStyle'>
-                            <li><a href="">User List</a></li>
-                            <li><a href="">Edit user</a></li>
-                            <li><a href="">Create User</a></li>
+                    <li>
+                        <Link className="has-arrow " to="" aria-expanded="false" onClick={() => { changeState('users') }}>
+                            <div className="menu-icon">
+                                <HiUserGroup />
+                            </div>
+                            <span className="nav-text">Users</span>
+                        </Link>
+                        <ul aria-expanded="false" className={`listStyle mm-collapse ${state.users ? "mm-show" : ""} `}>
+                            <li><Link to="users-lists">User List</Link></li>
+                            <li><Link to="">Edit user</Link></li>
+                            <li><Link to="create-users">Create User</Link></li>
                             <li><a href="">Manage User Wallet</a></li>
                             <li><a href="">User Wise API Switch</a></li>
                         </ul>
@@ -58,7 +65,7 @@ function Aside() {
                         <span className="nav-text">Wallet Requests</span>
                     </a>
                     </li>
-                    <li><a className="d-flex" href="javascript:void(0);" aria-expanded="false" >
+                    <li><a className="d-flex" href=";" aria-expanded="false" >
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10.5346 2.55658H7.1072C4.28845 2.55658 2.52112 4.55216 2.52112 7.37733V14.9985C2.52112 17.8237 4.2802 19.8192 7.1072 19.8192H15.1959C18.0238 19.8192 19.7829 17.8237 19.7829 14.9985V11.3062" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -80,7 +87,7 @@ function Aside() {
                         <div> <span className="nav-text">Circle Wise API Switch</span></div>
                     </a>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -110,7 +117,7 @@ function Aside() {
                         <span className="nav-text">Operator API Switch	</span>
                     </a>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -142,7 +149,7 @@ function Aside() {
                         <span className="nav-text">System Settings	</span>
                     </a>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -160,7 +167,7 @@ function Aside() {
                         </ul>
                     </li>
 
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -179,7 +186,7 @@ function Aside() {
                             <li><a href=""> Send Notifications	</a></li>
                         </ul>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -200,7 +207,7 @@ function Aside() {
                             <li><a href=""> DMT Report</a></li>
                         </ul>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.75713 9.35157V15.64" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -244,7 +251,7 @@ function Aside() {
                     </a>
                     </li>
                     <li className="menu-title">OUR FEATURES</li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M7.11086 10.2878V13.7208" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -261,7 +268,7 @@ function Aside() {
                             <li><a href="app-profile.html">Profile</a></li>
                             <li><a href="edit-profile.html">Edit Profile</a></li>
                             <li><a href="post-details.html">Post Details</a></li>
-                            <li><a className="has-arrow" href="javascript:void(0);" aria-expanded="false">Email</a>
+                            <li><a className="has-arrow" href=";" aria-expanded="false">Email</a>
                                 <ul aria-expanded="false">
                                     <li><a href="email-compose.html">Compose</a></li>
                                     <li><a href="email-inbox.html">Inbox</a></li>
@@ -269,7 +276,7 @@ function Aside() {
                                 </ul>
                             </li>
                             <li><a href="app-calender.html">Calendar</a></li>
-                            <li><a className="has-arrow" href="javascript:void(0);" aria-expanded="false">Shop</a>
+                            <li><a className="has-arrow" href=";" aria-expanded="false">Shop</a>
                                 <ul aria-expanded="false">
                                     <li><a href="ecom-product-grid.html">Product Grid</a></li>
                                     <li><a href="ecom-product-list.html">Product List</a></li>
@@ -282,7 +289,7 @@ function Aside() {
                             </li>
                         </ul> */}
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M14.8381 11.7317C15.4566 11.7317 15.9757 12.2422 15.8811 12.853C15.3263 16.4463 12.2502 19.1143 8.54009 19.1143C4.43536 19.1143 1.10834 15.7873 1.10834 11.6835C1.10834 8.30245 3.67693 5.15297 6.56878 4.44087C7.19018 4.28745 7.82702 4.72455 7.82702 5.36429C7.82702 9.69868 7.97272 10.8199 8.79579 11.4297C9.61886 12.0396 10.5867 11.7317 14.8381 11.7317Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -300,7 +307,7 @@ function Aside() {
                             <li><a href="chart-peity.html">Peity</a></li>
                         </ul> */}
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={18} height={18} viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M10.0122 1.82893L11.6874 5.17545C11.8515 5.50399 12.1684 5.73179 12.5359 5.78451L16.2832 6.32391C17.2091 6.45758 17.5775 7.57968 16.9075 8.22262L14.1977 10.8264C13.9314 11.0825 13.8101 11.4505 13.8731 11.812L14.5126 15.488C14.6701 16.3974 13.7023 17.0911 12.8747 16.6609L9.52545 14.9241C9.1971 14.7537 8.80385 14.7537 8.47455 14.9241L5.12525 16.6609C4.29771 17.0911 3.32986 16.3974 3.48831 15.488L4.12686 11.812C4.18986 11.4505 4.06864 11.0825 3.80233 10.8264L1.09254 8.22262C0.422489 7.57968 0.790922 6.45758 1.71678 6.32391L5.4641 5.78451C5.83158 5.73179 6.14942 5.50399 6.31359 5.17545L7.98776 1.82893C8.40201 1.00148 9.59799 1.00148 10.0122 1.82893Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -335,7 +342,7 @@ function Aside() {
                             </li>
                         </ul> */}
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={20} height={20} viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M18.634 13.4211C18.634 16.7009 16.7007 18.6342 13.4209 18.6342H6.28738C2.99929 18.6342 1.06238 16.7009 1.06238 13.4211V6.27109C1.06238 2.99584 2.26688 1.06259 5.54763 1.06259H7.38096C8.03913 1.06351 8.65879 1.37242 9.05296 1.89951L9.88988 3.01234C10.2859 3.53851 10.9055 3.84834 11.5637 3.84926H14.1579C17.446 3.84926 18.6596 5.52309 18.6596 8.86984L18.634 13.4211Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -366,7 +373,7 @@ function Aside() {
                         <span className="nav-text">Widget</span>
                     </a>
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14.4065 14.8714H7.78821" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -385,7 +392,7 @@ function Aside() {
                             <li><a href="form-validation.html">Form Validate</a></li>
                         </ul> */}
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={16} height={15} viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.46932 12.2102H0.693665" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -401,7 +408,7 @@ function Aside() {
                             <li><a href="table-datatable-basic.html">Datatable</a></li>
                         </ul> */}
                     </li>
-                    <li><a className="has-arrow " href="javascript:void(0);" aria-expanded="false">
+                    <li><a className="has-arrow " href=";" aria-expanded="false">
                         <div className="menu-icon">
                             <svg width={22} height={22} viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M16.3691 18.7157C18.086 18.7157 19.4784 17.3242 19.4793 15.6073V15.6055V13.1305C18.3454 13.1305 17.4269 12.212 17.426 11.078C17.426 9.94504 18.3445 9.02562 19.4784 9.02562H19.4793V6.55062C19.4812 4.83279 18.0906 3.43946 16.3737 3.43762H16.3682H5.63216C3.91433 3.43762 2.52191 4.82912 2.521 6.54696V6.54787V9.10537C3.6155 9.06687 4.53308 9.92304 4.57158 11.0175C4.5725 11.0377 4.57341 11.0579 4.57341 11.078C4.57433 12.2101 3.65858 13.1286 2.5265 13.1305H2.521V15.6055C2.52008 17.3224 3.9125 18.7157 5.62941 18.7157H5.63033H16.3691Z" stroke="#888888" strokeLinecap="round" strokeLinejoin="round" />
@@ -413,7 +420,7 @@ function Aside() {
                         {/* <ul aria-expanded="false">
                             <li><a href="page-login.html">Login</a></li>
                             <li><a href="page-register.html">Register</a></li>
-                            <li><a className="has-arrow" href="javascript:void(0);" aria-expanded="false">Error</a>
+                            <li><a className="has-arrow" href=";" aria-expanded="false">Error</a>
                                 <ul aria-expanded="false">
                                     <li><a href="page-error-400.html">Error 400</a></li>
                                     <li><a href="page-error-403.html">Error 403</a></li>
@@ -428,7 +435,7 @@ function Aside() {
                     </li>
                 </ul>
                 <div className="help-desk">
-                    <a href="javascript:void(0)" className="btn btn-primary">Help Desk</a>
+                    <a href="" className="btn btn-primary">Help Desk</a>
                 </div>
             </div>
         </div>
